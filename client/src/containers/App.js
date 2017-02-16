@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import SelectedFoods from './SelectedFoods';
+import SelectedFoods from '../components/SelectedFoods';
 import FoodSearch from './FoodSearch';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../actions';
+// import '../styles/app.css';
 
 class App extends Component {
   state = {
@@ -38,4 +43,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    foods: state.foods
+  };
+}
+
+export default connect(mapStateToProps)(App);
