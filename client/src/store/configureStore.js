@@ -8,7 +8,10 @@ export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+    compose (
+      applyMiddleware(reduxThunk),
+      window.devToolsExtension ? window.devToolsExtension() : undefined
+    )
   );
 
   if (module.hot) {

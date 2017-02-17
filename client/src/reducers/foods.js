@@ -10,33 +10,17 @@ export default function(state = initialState, action) {
   switch (action.type){
     case REQUEST_FOODS:
       return {
-        ...state, searchValue: action.term, showRemoveIcon: true, foods: [
-          {
-            carbohydrate_g: 1.23,
-            description: "Lettuce, butterhead (incl boston  bibb types), raw",
-            fat_g:0.15,
-            kcal:13,
-            protein_g:1.35
-          },
-          {
-            carbohydrate_g: 2.23,
-            description: "Lettuce, butterhead (incl boston  bibb types), raw",
-            fat_g:0.15,
-            kcal:13,
-            protein_g:1.35
-          },
-          {
-            carbohydrate_g: 3.23,
-            description: "Lettuce, butterhead (incl boston  bibb types), raw",
-            fat_g:0.15,
-            kcal:13,
-            protein_g:1.35
-          },
-        ]
+        ...state,
+        searchValue: action.term,
+        showRemoveIcon: true,
+        foods: action.payload.body
       };
     case CANCEL_FOODS_REQUEST:
       return {
-        ...state, searchValue: '', showRemoveIcon: false, foods: []
+        ...state,
+        searchValue: '',
+        showRemoveIcon: false,
+        foods: []
       }
     default:
       return state;
