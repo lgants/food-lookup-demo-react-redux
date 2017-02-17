@@ -7,14 +7,55 @@ import * as Actions from '../actions';
 
 const MATCHING_ITEM_LIMIT = 25;
 
+class FoodSearchOld extends React.Component {
+  state = {
+    foods: [],
+    showRemoveIcon: false,
+    searchValue: '',
+  };
 
-class FoodSearch extends React.Component {
+  handleSearchChange = (e) => {
+    const value = e.target.value;
+
+    this.setState({
+      searchValue: value,
+    });
+
+    if (value === '') {
+      this.setState({
+        foods: [],
+        showRemoveIcon: false,
+      });
+    } else {
+      this.setState({
+        showRemoveIcon: true,
+      });
+
+      Client.search(value, (foods) => {
+        this.setState({
+          foods: foods.slice(0, MATCHING_ITEM_LIMIT),
+        });
+      });
+    }
+  };
+
+  handleSearchCancel = () => {
+    this.setState({
+      foods: [],
+      showRemoveIcon: false,
+      searchValue: '',
+    });
+  };
+
   render() {
-    const { showRemoveIcon, foods } = this.props;
+    const { showRemoveIcon, foods } = this.state;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden' };
 
     const foodRows = foods.map((food, idx) => (
-      <tr>
+      <tr
+        key={idx}
+        onClick={() => this.props.onFoodClick(food)}
+      >
         <td>{food.description}</td>
         <td className='right aligned'>{food.kcal}</td>
         <td className='right aligned'>{food.protein_g}</td>
@@ -35,13 +76,14 @@ class FoodSearch extends React.Component {
                       className='prompt'
                       type='text'
                       placeholder='Search foods...'
-                      onChange={event => this.props.actions.fetchFoods(event.target.value)}
+                      value={this.state.searchValue}
+                      onChange={this.props.actions.requestFoods}
                     />
                     <i className='search icon' />
                   </div>
                   <i
                     className='remove icon'
-                    onClick={this.props.actions.cancelFoodsRequest()}
+                    onClick={this.handleSearchCancel}
                     style={removeIconStyle}
                   />
                 </div>
@@ -65,10 +107,8 @@ class FoodSearch extends React.Component {
 }
 
 function mapStateToProps(state) {
-  debugger
   return {
-    foods: state.foods.foods,
-    showRemoveIcon: state.foods.showRemoveIcon
+    gifs: state.gifs
   };
 }
 
@@ -77,5 +117,3 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(Actions, dispatch)
   };
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(FoodSearch);
