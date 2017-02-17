@@ -28,8 +28,8 @@ class App extends Component {
     // this.setState({ selectedFoods: newFoods });
   }
 
-  removeFoodItem = (itemIndex) => {
-    console.log(itemIndex)
+  removeFoodItem(itemIndex){
+    this.props.actions.removeSelection(itemIndex);
   }
 
   render() {
@@ -39,7 +39,7 @@ class App extends Component {
         <div className='ui text container'>
           <SelectedFoods
             foods={selectedFoods}
-            onFoodClick={this.removeFoodItem}
+            onFoodClick={this.removeFoodItem.bind(this)}
           />
           <FoodSearch
             onFoodClick={this.addFood}

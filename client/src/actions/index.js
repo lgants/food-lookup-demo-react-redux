@@ -33,15 +33,15 @@ export function cancelFoodsRequest() {
 }
 
 export function addSelection(food) {
-  debugger;
   return {
     type: ADD_SELECTION,
     payload: food
   }
 }
 
-export function removeSelection() {
+export function removeSelection(idx) {
   return {
     type: REMOVE_SELECTION,
+    payload: idx
   }
 }
