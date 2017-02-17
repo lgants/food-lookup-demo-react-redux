@@ -19,7 +19,7 @@ class FoodSearch extends React.Component {
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden' };
 
     const foodRows = foods.map((food, idx) => (
-      <tr>
+      <tr key={idx}>
         <td>{food.description}</td>
         <td className='right aligned'>{food.kcal}</td>
         <td className='right aligned'>{food.protein_g}</td>
