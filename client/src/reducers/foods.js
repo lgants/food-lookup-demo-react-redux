@@ -2,6 +2,7 @@ import { REQUEST_FOODS, CANCEL_FOODS_REQUEST } from '../actions';
 
 const initialState =  {
   foods: [],
+  searchValue: '',
   showRemoveIcon: false
 };
 
@@ -9,7 +10,7 @@ export default function(state = initialState, action) {
   switch (action.type){
     case REQUEST_FOODS:
       return {
-        ...state, showRemoveIcon: true, foods: [
+        ...state, searchValue: action.term, showRemoveIcon: true, foods: [
           {
             carbohydrate_g: 1.23,
             description: "Lettuce, butterhead (incl boston  bibb types), raw",
@@ -33,9 +34,9 @@ export default function(state = initialState, action) {
           },
         ]
       };
-    case REQUEST_FOODS:
+    case CANCEL_FOODS_REQUEST:
       return {
-        ...state, showRemoveIcon: false, foods: []
+        ...state, searchValue: '', showRemoveIcon: false, foods: []
       }
     default:
       return state;

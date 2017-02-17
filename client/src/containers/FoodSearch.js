@@ -9,7 +9,12 @@ const MATCHING_ITEM_LIMIT = 25;
 
 
 class FoodSearch extends React.Component {
+  handleInputChange(searchTerm){
+    this.props.actions.requestFoods(searchTerm);
+  }
+
   render() {
+
     const { showRemoveIcon, foods } = this.props;
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden' };
 
@@ -35,13 +40,13 @@ class FoodSearch extends React.Component {
                       className='prompt'
                       type='text'
                       placeholder='Search foods...'
-                      onChange={event => this.props.actions.fetchFoods(event.target.value)}
+                      onChange={event => this.handleInputChange(event.target.value)}
                     />
                     <i className='search icon' />
                   </div>
                   <i
                     className='remove icon'
-                    onClick={this.props.actions.cancelFoodsRequest()}
+                    onClick={this.props.actions.cancelFoodsRequest}
                     style={removeIconStyle}
                   />
                 </div>
@@ -65,10 +70,10 @@ class FoodSearch extends React.Component {
 }
 
 function mapStateToProps(state) {
-  debugger
   return {
     foods: state.foods.foods,
-    showRemoveIcon: state.foods.showRemoveIcon
+    showRemoveIcon: state.foods.showRemoveIcon,
+    searchValue: state.foods.searchValue
   };
 }
 
