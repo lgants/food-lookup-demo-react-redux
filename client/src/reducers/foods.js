@@ -3,7 +3,8 @@ import { REQUEST_FOODS, CANCEL_FOODS_REQUEST } from '../actions';
 const initialState =  {
   foods: [],
   searchValue: '',
-  showRemoveIcon: false
+  showRemoveIcon: false,
+  selectedFoods: [],
 };
 
 export default function(state = initialState, action) {

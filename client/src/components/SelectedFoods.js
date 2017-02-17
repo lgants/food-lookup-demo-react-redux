@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default function SelectedFoods(props) {
-  const { foods } = props;
-
+  const foods = props.foods;
+  debugger;
   const foodRows = foods.map((food, idx) => (
     <tr
       key={idx}

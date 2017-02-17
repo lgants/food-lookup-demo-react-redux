@@ -1,11 +1,11 @@
 import React from 'react';
-import Client from './Client';
+// import Client from './Client';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
-const MATCHING_ITEM_LIMIT = 25;
+// const MATCHING_ITEM_LIMIT = 25;
 
 
 class FoodSearch extends React.Component {
@@ -19,7 +19,9 @@ class FoodSearch extends React.Component {
     const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden' };
 
     const foodRows = foods.map((food, idx) => (
-      <tr key={idx}>
+      <tr key={idx}
+          // onClick={() => this.props.onFoodClick(food)
+      >
         <td>{food.description}</td>
         <td className='right aligned'>{food.kcal}</td>
         <td className='right aligned'>{food.protein_g}</td>
@@ -73,7 +75,7 @@ function mapStateToProps(state) {
   return {
     foods: state.foods.foods,
     showRemoveIcon: state.foods.showRemoveIcon,
-    searchValue: state.foods.searchValue
+    searchValue: state.foods.searchValue,
   };
 }
 

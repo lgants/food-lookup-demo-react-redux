@@ -8,25 +8,24 @@ import * as Actions from '../actions';
 // import '../styles/app.css';
 
 class App extends Component {
-  state = {
-    selectedFoods: [],
-  }
-
-  removeFoodItem = (itemIndex) => {
-    const filteredFoods = this.state.selectedFoods.filter(
-      (item, idx) => itemIndex !== idx,
-    );
-    this.setState({ selectedFoods: filteredFoods });
-  }
-
+  // removeFoodItem = (itemIndex) => {
+  //   const filteredFoods = this.state.selectedFoods.filter(
+  //     (item, idx) => itemIndex !== idx,
+  //   );
+  //   this.setState({ selectedFoods: filteredFoods });
+  // }
+  //
   addFood = (food) => {
-    const newFoods = this.state.selectedFoods.concat(food);
-    this.setState({ selectedFoods: newFoods });
+    debugger
+    // const newFoods = this.state.selectedFoods.concat(food);
+    // this.setState({ selectedFoods: newFoods });
+  }
+
+  addFood = (itemIndex) => {
   }
 
   render() {
-    const { selectedFoods } = this.state;
-
+    const { selectedFoods } = this.props;
     return (
       <div className='App'>
         <div className='ui text container'>
@@ -45,8 +44,15 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    foods: state.foods
+    foods: state.foods.foods,
+    selectedFoods: state.foods.selectedFoods
   };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

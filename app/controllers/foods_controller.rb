@@ -7,7 +7,7 @@ class FoodsController < ApplicationController
     else
       render(
         status: 200,
-        json: Food.where(["description LIKE ?", "%#{q}%"]).limit(100)
+        json: Food.where(["description LIKE ?", "%#{q}%"]).limit(25)
       )
     end
   end
