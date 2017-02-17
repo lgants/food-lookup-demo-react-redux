@@ -1,4 +1,4 @@
-import { REQUEST_FOODS, CANCEL_FOODS_REQUEST } from '../actions';
+import { REQUEST_FOODS, CANCEL_FOODS_REQUEST, ADD_SELECTION, REMOVE_SELECTION } from '../actions';
 
 const initialState =  {
   foods: [],
@@ -22,7 +22,15 @@ export default function(state = initialState, action) {
         searchValue: '',
         showRemoveIcon: false,
         foods: []
-      }
+      };
+    case ADD_SELECTION:
+      return {
+        ...state,
+      };
+    case REMOVE_SELECTION:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

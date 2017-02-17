@@ -20,7 +20,7 @@ class FoodSearch extends React.Component {
 
     const foodRows = foods.map((food, idx) => (
       <tr key={idx}
-          // onClick={() => this.props.onFoodClick(food)
+          onClick={() => this.props.onFoodClick(food)}
       >
         <td>{food.description}</td>
         <td className='right aligned'>{food.kcal}</td>

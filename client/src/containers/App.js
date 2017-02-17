@@ -16,12 +16,13 @@ class App extends Component {
   // }
   //
   addFood = (food) => {
-    debugger
+    console.log(food)
     // const newFoods = this.state.selectedFoods.concat(food);
     // this.setState({ selectedFoods: newFoods });
   }
 
-  addFood = (itemIndex) => {
+  removeFoodItem = (itemIndex) => {
+    console.log(itemIndex)
   }
 
   render() {

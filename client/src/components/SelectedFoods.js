@@ -2,12 +2,9 @@ import React from 'react';
 
 export default function SelectedFoods(props) {
   const foods = props.foods;
-  debugger;
+
   const foodRows = foods.map((food, idx) => (
-    <tr
-      key={idx}
-      onClick={() => props.onFoodClick(idx)}
-    >
+    <tr key={idx} onClick={() => {props.onFoodClick(idx)}}>
       <td>{food.description}</td>
       <td className='right aligned'>{food.kcal}</td>
       <td className='right aligned'>{food.protein_g}</td>
