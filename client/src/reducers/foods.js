@@ -8,6 +8,7 @@ const initialState =  {
 };
 
 export default function(state = initialState, action) {
+  debugger;
   switch (action.type){
     case REQUEST_FOODS:
       return {
@@ -26,10 +27,12 @@ export default function(state = initialState, action) {
     case ADD_SELECTION:
       return {
         ...state,
+        selectedFoods: [...state.selectedFoods, action.payload]
       };
     case REMOVE_SELECTION:
       return {
         ...state,
+        selectedFoods: []
       };
     default:
       return state;

@@ -32,9 +32,11 @@ export function cancelFoodsRequest() {
   }
 }
 
-export function addSelection() {
+export function addSelection(food) {
+  debugger;
   return {
     type: ADD_SELECTION,
+    payload: food
   }
 }
 

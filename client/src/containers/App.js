@@ -15,8 +15,15 @@ class App extends Component {
   //   this.setState({ selectedFoods: filteredFoods });
   // }
   //
-  addFood = (food) => {
-    console.log(food)
+  // addFood = (food) => {
+  //   console.log(food)
+  //   this.actions.addSelection(food);
+  //   // const newFoods = this.state.selectedFoods.concat(food);
+  //   // this.setState({ selectedFoods: newFoods });
+  // }
+
+  addFood(food){
+    this.actions.addSelection(food);
     // const newFoods = this.state.selectedFoods.concat(food);
     // this.setState({ selectedFoods: newFoods });
   }
